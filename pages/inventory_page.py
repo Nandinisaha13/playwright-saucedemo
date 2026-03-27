@@ -14,3 +14,12 @@ class InventoryPage:
     
     def go_to_cart(self):
         self.page.click(self.cart_icon)
+
+    def get_first_item_name(self):
+        return self.page.locator(".inventory_item_name").first.inner_text()
+    
+    def get_first_item_price(self):
+        return self.page.locator(".inventory_item_price").first.inner_text()
+    
+    def remove_item(self):
+        self.page.locator("#remove-sauce-labs-backpack").click()
