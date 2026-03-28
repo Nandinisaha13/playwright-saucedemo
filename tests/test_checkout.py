@@ -6,6 +6,7 @@ from utils.config import BASE_URL,USERNAME, PASSWORD
 
 
 def test_checkout(page):
+
     login_page=LoginPage(page)
     login_page.navigate(BASE_URL)
     login_page.login(USERNAME, PASSWORD)
@@ -13,6 +14,7 @@ def test_checkout(page):
     inventory_page= InventoryPage(page)
     inventory_page.add_item_to_cart()
     inventory_page.go_to_cart()
+    #page.screenshot(path="manual.png")
 
     cart_page= CartPage(page)
     cart_page.click_checkout()
