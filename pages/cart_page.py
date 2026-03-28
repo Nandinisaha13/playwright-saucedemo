@@ -5,6 +5,7 @@ class CartPage:
         self.cart_items= ".cart_item"
         self.first_item_name=".inventory_item_name"
         self.first_item_price=".inventory_item_price"
+        self.checkout= "#checkout"
 
     def  get_cart_items_count(self):
         return len(self.page.locator(self.cart_items).all())
@@ -14,6 +15,9 @@ class CartPage:
     
     def get_item_price(self):
         return self.page.locator(self.first_item_price).first.inner_text()
+    
+    def click_checkout(self):
+        self.page.click(self.checkout)
   
     
     
