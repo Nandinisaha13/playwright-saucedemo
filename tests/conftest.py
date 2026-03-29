@@ -1,5 +1,6 @@
 import pytest
 from playwright.sync_api import sync_playwright
+import pytest_html
 
 @pytest.fixture(scope="function")
 def page():
@@ -12,13 +13,14 @@ def page():
         browser.close()
 
 
-
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     outcome = yield
-    result = outcome.get_result()
+    report = outcome.get_result()
 
-    if result.failed:
+    if report.when == "call" and report.failed:
         page = item.funcargs.get("page")
+
         if page:
-            page.screenshot(path=f"screenshots/{item.name}.png")
+            screenshot_path = f"screenshots/{item.name}.png"
+            page.screenshot(path=screenshot_path)
