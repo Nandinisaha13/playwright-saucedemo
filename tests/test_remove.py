@@ -12,6 +12,4 @@ def test_remove_item(page):
     inventory_page.add_item_to_cart()
 
     inventory_page.remove_item()
-
-    assert False
     assert not page.locator(".shopping_cart_badge").is_visible()
