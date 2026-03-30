@@ -23,3 +23,20 @@ class InventoryPage:
     
     def remove_item(self):
         self.page.locator("#remove-sauce-labs-backpack").click()
+
+    def add_multiple_items(self, count):
+        #items= self.page.locator('[data-test^="add-to-cart"]').all()#using this because evry add have this at starting
+        for i in range(count):
+            self.page.locator('[data-test^="add-to-cart"]').first.click() #this works better because DOM changes in loop and everything becomes first once added
+
+    def add_item_by_name(self,product_name):
+        item=self.page.locator(".inventory_item", has_text= product_name)
+        item.locator("button").click()
+
+    def add_items_by_names(self, product_name):
+        for name in product_name:
+            self.add_item_by_name(name)
+
+
+            
+

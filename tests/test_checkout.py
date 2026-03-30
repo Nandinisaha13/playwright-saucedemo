@@ -24,7 +24,5 @@ def test_checkout(page):
     checkout_page.continue_checkout()
     checkout_page.finish_checkout()
 
-    #assert False
-
     assert "thank you" in checkout_page.get_success_message().lower()
 

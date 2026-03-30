@@ -1,6 +1,8 @@
 import pytest
 from playwright.sync_api import sync_playwright
-import pytest_html
+
+from pages.login_page import LoginPage
+from utils.config import BASE_URL, USERNAME, PASSWORD
 
 @pytest.fixture(scope="function")
 def page():
@@ -11,6 +13,12 @@ def page():
         yield page
         # print("Closing browser")
         browser.close()
+@pytest.fixture
+def logged_in_page(page):
+    login_page= LoginPage(page)
+    login_page.navigate(BASE_URL)
+    login_page.login(USERNAME, PASSWORD)
+    return page
 
 
 @pytest.hookimpl(hookwrapper=True)
