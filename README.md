@@ -3,9 +3,7 @@
 ## 📌 Overview
 
 This project demonstrates a **scalable UI automation framework** built using Playwright with Python.
-It follows modern automation practices like **Page Object Model (POM)**, **Pytest fixtures**, and **data-driven testing**.
-
-The framework automates real-world e-commerce scenarios on SauceDemo, including login validation and cart functionality.
+It automates real-world e-commerce scenarios on SauceDemo using modern testing practices like **Page Object Model (POM)**, **Pytest fixtures**, and **CI/CD integration**.
 
 ---
 
@@ -14,7 +12,7 @@ The framework automates real-world e-commerce scenarios on SauceDemo, including 
 * Python 🐍
 * Playwright 🎭
 * Pytest ⚡
-* GitHub (Version Control)
+* GitHub Actions (CI/CD) 🔄
 
 ---
 
@@ -26,19 +24,29 @@ playwright-saucedemo/
 ├── tests/                # Test cases
 │   ├── test_login.py
 │   ├── test_inventory.py
+│   ├── test_cart.py
+│   ├── test_checkout.py
+│   ├── test_remove.py
+│   ├── test_multipleitems.py
 │   └── conftest.py
 │
 ├── pages/                # Page Object Model (POM)
 │   ├── login_page.py
 │   ├── inventory_page.py
-│   └── cart_page.py
+│   ├── cart_page.py
+│   └── checkout_page.py
 │
 ├── utils/                # Config & utilities
 │   └── config.py
 │
-├── requirements.txt
+├── reports/              # HTML reports (generated)
+├── screenshots/          # Failure screenshots
+│
+├── .github/workflows/    # CI/CD pipeline
+│   └── tests.yml
+│
 ├── README.md
-└── .gitignore
+├── .gitignore
 ```
 
 ---
@@ -51,76 +59,117 @@ playwright-saucedemo/
 * Invalid login
 * Locked user validation
 
-### 🛒 E-Commerce Flow
+### 🛒 Cart Functionality
 
-* Add item to cart
-* Verify cart badge count
-* Validate items in cart
+* Add single item
+* Add multiple items dynamically
+* Remove item from cart
+* Validate cart count
+
+### 🧠 Advanced Item Handling
+
+* Add items by **product name (dynamic locator)**
+* Avoid index-based selection
+* Handle dynamic DOM updates
+
+### 🛍️ Cart Validation
+
+* Validate item names in cart
+* Validate item prices
+* Validate multiple items
+
+### 💳 Checkout Flow
+
+* Complete end-to-end checkout
+* Form validation (positive & negative scenarios)
+* Order confirmation validation
+
+### 🔄 Sorting Validation
+
+* Price: Low → High
+* Price: High → Low
+* UI data vs programmatic validation
 
 ### ⚙️ Framework Features
 
-* Pytest fixtures for setup & teardown
-* Data-driven testing using `@pytest.mark.parametrize`
-* Page Object Model (POM) design pattern
-* Centralized configuration management
+* Page Object Model (POM)
+* Pytest fixtures (reusable setup)
+* Data-driven testing (`@pytest.mark.parametrize`)
+* Dynamic locator strategies
+* Clean separation of concerns
 
 ---
 
-## ▶️ How to Run
+## 📊 Reporting & Debugging
+
+* HTML Test Reports (`pytest-html`)
+* Screenshot capture on failure
+* Clean separation of report and debug artifacts
+
+---
+
+## 🚀 CI/CD Integration
+
+* GitHub Actions pipeline
+* Automatic test execution on push
+* Report & screenshot artifacts upload
+
+---
+
+## ▶️ How to Run Locally
 
 ### 1. Clone the repo
 
-```bash
-git clone <your-repo-url>
+```
+git clone https://github.com/Nandinisaha13/playwright-saucedemo.git
 cd playwright-saucedemo
 ```
 
 ### 2. Setup environment
 
-```bash
+```
 python -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
-```
-
-### 3. Install browsers
-
-```bash
+pip install pytest playwright pytest-html
 playwright install
 ```
 
-### 4. Run tests
+### 3. Run tests
 
-```bash
-pytest -v
+```
+pytest --html=reports/report.html
 ```
 
 ---
 
 ## 🧠 Key Learnings
 
-* Difference between Selenium and Playwright (auto-waiting, stability)
-* Importance of clean test architecture (POM)
-* Fixture-based test design in Pytest
-* Data-driven testing for scalability
-* Debugging real-world issues (env setup, imports, Git errors)
+* Handling dynamic DOM changes in UI automation
+* Choosing stable locators (`data-test`, text-based)
+* Avoiding flaky tests with Playwright auto-waiting
+* Building reusable and scalable test frameworks
+* Debugging CI/CD environment differences
+* Managing Git and repository hygiene
 
 ---
 
 ## 🚀 Future Enhancements
 
-* ✅ Remove item from cart
-* ✅ Checkout flow automation
-* ⏳ API testing integration (Playwright request)
-* ⏳ Allure reporting
-* ⏳ Parallel execution
-* ⏳ CI/CD using GitHub Actions
+* 🔜 Name-based sorting validation
+* 🔜 Parallel test execution
+* 🔜 API + UI integration (Playwright request)
+* 🔜 Allure reporting
 
 ---
 
 ## 💡 Why This Project Stands Out
 
-This is not just a script-based automation project —
-it demonstrates **framework-level thinking** and **real-world test design**, aligning with SDET-level expectations.
+This project demonstrates:
 
----
+* Real-world test scenarios (not just demo scripts)
+* Strong framework design principles
+* Debugging and problem-solving skills
+* CI/CD readiness
+
+
+
