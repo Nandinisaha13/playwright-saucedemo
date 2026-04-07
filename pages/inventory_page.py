@@ -5,6 +5,7 @@ class InventoryPage:
         self.add_to_cart_btn= "#add-to-cart-sauce-labs-backpack"
         self.cart_badge= ".shopping_cart_badge"
         self.cart_icon= ".shopping_cart_link"
+        self.sorting_button= page.locator("[data-test='product-sort-container']")
 
     def add_item_to_cart(self):
         self.page.locator(self.add_to_cart_btn).click()
@@ -36,6 +37,14 @@ class InventoryPage:
     def add_items_by_names(self, product_name):
         for name in product_name:
             self.add_item_by_name(name)
+    
+    def sort_items(self, option_text):
+        self.page.select_option(".product_sort_container", label=option_text)
+
+    def get_all_prices(self):
+        prices = self.page.locator(".inventory_item_price").all_inner_texts()
+        return [float(price.replace("$", "")) for price in prices]
+
 
 
             
