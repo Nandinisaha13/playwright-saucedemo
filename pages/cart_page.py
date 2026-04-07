@@ -18,6 +18,12 @@ class CartPage:
     
     def click_checkout(self):
         self.page.click(self.checkout)
+
+    def get_all_item_names(self):
+        return self.page.locator(".inventory_item_name").all_inner_texts()
+
+    def get_all_item_prices(self):
+        return self.page.locator(".inventory_item_price").all_inner_texts()
   
     
     
