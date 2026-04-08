@@ -44,6 +44,15 @@ class InventoryPage:
     def get_all_prices(self):
         prices = self.page.locator(".inventory_item_price").all_inner_texts()
         return [float(price.replace("$", "")) for price in prices]
+    
+    def get_all_names(self):
+        return self.page.locator(".inventory_item_name").all_inner_texts()
+    
+    def is_sorted_ascending(self, data):
+        return data == sorted(data)
+
+    def is_sorted_descending(self, data):
+        return data == sorted(data, reverse=True)
 
 
 
